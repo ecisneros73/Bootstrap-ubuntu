@@ -3,7 +3,7 @@
 
 #Install utilities
 sudo apt install sysvbanner
-
+sudo apt install figlet
 
 
 #Install git 
@@ -34,7 +34,7 @@ sudo systemctl status jenkins
 sudo ufw allow 8080
 sudo ufw status
 
-# Jnekins password 
+# Jenkins password 
 
 
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword >> password.txt
