@@ -1,10 +1,22 @@
 #!/bin/bash
 # Jenkins install
 
+#Install utilities
+sudo apt install sysvbanner
+
+
+
+#Install git 
+sudo apt update
+sudo apt install git -y
+git --version
+
 # Java Install
-java -version
+echo java -version
 sudo apt update
 sudo apt install openjdk-21-jdk -y
+java -version 2>&1 | head -n 1 | figlet
+
 
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 
@@ -20,12 +32,13 @@ sudo systemctl status jenkins
 # Allow Jenkins to communicate by setting up the default UFW firewall:
 
 sudo ufw allow 8080
-
 sudo ufw status
 
 # Jnekins password 
 
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword >> password.txt
+
 
 
 #AWS CLI Install 
@@ -34,7 +47,7 @@ sudo apt install -y unzip curl
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
-
+aws --version 2>&1 | head -n 1 | figlet
 
 
 
