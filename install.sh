@@ -83,3 +83,11 @@ rm kubectl
 # Minikube start
 minikube start --driver=docker
 minikube status
+minikube addons enable ingress
+sudo minikube tunnel
+
+#deploy nginx pod
+sleep 60
+kubectl run nginx-pod --image nginx
+kubectl get pod -w
+kubectl expose pod nginx-pod --port 80 --type NodePort
