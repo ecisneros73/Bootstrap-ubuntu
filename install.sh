@@ -2,29 +2,29 @@
 # Jenkins install
 
 #Install utilities
-sudo apt install sysvbanner
-sudo apt install figlet
-
-
-#Install git 
 sudo apt update
+sudo apt install figlet
+git  --version 2>&1 | head -n 1 | figlet
+
+sleep 60
+
+
+figlet Install git 
 sudo apt install git -y
 git --version
 
-# Java Install
-echo java -version
-sudo apt update
+
+figlet Java Install
+
 sudo apt install openjdk-21-jdk -y
-sleep 30
 java -version 2>&1 | head -n 1 | figlet
+sleep 30
 
-
+figlet Install Jenkins
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 
 echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
 /etc/apt/sources.list.d/jenkins.list > /dev/null
-
-# Install Jenkins
 
 sudo apt update
 sudo apt install jenkins -y
@@ -36,8 +36,6 @@ sudo ufw allow 8080
 sudo ufw status
 
 # Jenkins password 
-
-
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword >> password.txt
 
 
@@ -47,13 +45,21 @@ sudo apt update
 sudo apt install -y unzip curl
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
-sudo ./aws/install
+sudo ./aws/install 
 aws --version 2>&1 | head -n 1 | figlet
+
+
+#kubectl Install
+sudo apt-get update -y
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo chmod +x ./kubectl    
+sudo mv ./kubectl /usr/local/bin/kubectl     
+kubectl version --client
 
 
 #Docker install
 
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install ca-certificates curl gnupg
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -74,11 +80,7 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 rm minikube-linux-amd64
 
-#kubectl Install
 
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-rm kubectl
 
 # Minikube start
 minikube start --driver=docker
