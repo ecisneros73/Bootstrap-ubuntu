@@ -68,3 +68,18 @@ sudo systemctl start docker
 sudo systemctl enable docker
 sudo usermod -aG docker $USER # Add your user to the docker group to run docker commands without sudo
 newgrp docker # Activate the changes immediately, or log out and back in
+
+# Install Minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+rm minikube-linux-amd64
+
+#kubectl Install
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+rm kubectl
+
+# Minikube start
+minikube start --driver=docker
+minikube status
