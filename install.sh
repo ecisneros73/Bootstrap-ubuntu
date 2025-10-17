@@ -75,7 +75,9 @@ sudo systemctl enable docker
 sudo usermod -aG docker $USER # Add your user to the docker group to run docker commands without sudo
 newgrp docker # Activate the changes immediately, or log out and back in
 
-# Install Minikube
+sleep 60
+
+figlet Install Minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 rm minikube-linux-amd64
@@ -86,7 +88,7 @@ rm minikube-linux-amd64
 minikube start --driver=docker
 minikube status
 minikube addons enable ingress
-sudo minikube tunnel
+
 
 #deploy nginx pod
 sleep 60
