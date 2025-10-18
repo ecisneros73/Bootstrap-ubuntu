@@ -40,6 +40,8 @@ else
     sudo ufw allow 8080
     sudo ufw status
 fi
+# Maven Install
+sudo apt install maven -y
 
 # Save Jenkins initial password
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword | tee password.txt
@@ -77,10 +79,8 @@ sudo systemctl start docker
 sudo systemctl enable docker
 sudo usermod -aG docker $USER && newgrp docker
 print_step "Docker Group"
-sudo usermod -aG docker "$USER"
-newgrp docker <<EONG
-echo "Docker group updated for user: $USER"
-EONG
+
+sleep 60 
 
 print_step "Minikube Install"
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
