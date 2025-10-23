@@ -78,7 +78,6 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 sudo systemctl start docker
 sudo systemctl enable docker
 sudo usermod -aG docker $USER && newgrp docker
-print_step "Docker Group"
 
 sleep 60 
 
