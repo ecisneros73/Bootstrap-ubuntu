@@ -46,6 +46,19 @@ sudo apt install maven -y
 # Save Jenkins initial password
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword | tee password.txt
 
+#$JENKINS_HOME/init.groovy.d/01-create-admin.groovy
+import jenkins.model.*
+import hudson.security.*
+
+#Create an admin user if it doesn't exist
+def instance = Jenkins.getInstance()
+def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+hudsonRealm.createAccount("admin", "your_secure_password") 
+instance.setSecurityRealm(hudsonRealm)
+instance.save()
+
+
+#AWS cli install
 print_step "AWS CLI Install"
 sudo apt update -y
 sudo apt install -y unzip curl
