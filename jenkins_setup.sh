@@ -100,14 +100,14 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 rm minikube-linux-amd64
 
 # Start Minikube
-print_step "Minikube Start"
-minikube start --driver=docker
-minikube status
-minikube addons enable ingress
+#print_step "Minikube Start"
+#minikube start --driver=docker
+#minikube status
+#minikube addons enable ingress
 
 # Deploy NGINX pod
-print_step "Deploy NGINX"
-kubectl run nginx-pod --image=nginx
-sleep 10
-kubectl get pods -w &
-kubectl expose pod nginx-pod --port=80 --type=NodePort
+#print_step "Deploy NGINX"
+#kubectl run nginx-pod --image=nginx
+#sleep 10
+#kubectl get pods -w &
+#kubectl expose pod nginx-pod --port=80 --type=NodePort
